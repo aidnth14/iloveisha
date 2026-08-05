@@ -1,36 +1,58 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: #000;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#ui {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, 0) scale(var(--app-scale, 1));
+  will-change: transform;
 }
 
 #ui .love {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   margin: -225px 0 0 -225px;
   --i: 1;
 }
 
 #ui .love_word {
   color: #ea80b0;
-  font-size: 1.4rem;
-  letter-spacing: 2px;
+  font-size: clamp(0.95rem, 3.8vw, 1.4rem);
+  letter-spacing: 1.5px;
   white-space: nowrap;
-  text-shadow: 0 0 10px #fff;
+  text-shadow: 0 0 8px #fff, 0 0 16px #ff3fce;
   transform: translateY(-100%) rotate(-30deg);
 }
 
 #ui .love_horizontal {
   animation: horizontal 10s infinite alternate ease-in-out;
   animation-delay: calc(var(--i) * -300ms);
+  will-change: transform;
 }
 
 #ui .love_vertical {
   animation: vertical 20s infinite linear;
   animation-delay: calc(var(--i) * -300ms);
+  will-change: transform;
 }
 
 @keyframes horizontal {
@@ -126,5 +148,13 @@ body {
 
   100% {
     transform: translateY(180px);
+  }
+}
+
+/* Extra Mobile Focused Media Queries */
+@media (max-width: 480px) {
+  #ui .love_word {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
   }
 }
